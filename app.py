@@ -44,4 +44,8 @@ elif feature == "editing and polishing lyrics":
             st.text_area("Your polished lyrics will appear here:", value=polished_lyrics, height=300)
         else:
             st.warning("Please enter the lyrics you want to polish and how you want to change them.")
-        
+
+elif feature == "structure editing":
+    st.header("Structure Editing")
+    ## Add structure editing features here
+    ####
