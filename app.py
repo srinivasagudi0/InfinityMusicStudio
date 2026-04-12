@@ -9,7 +9,7 @@ st.set_page_config(page_title="Infinity Music Studio", page_icon=":musical_note:
 
 st.write("A small music studio where you can create lyrics for a song, adjust the tone, and perform all the necessary tasks from writing to polishing songs before publishing.")
 
-feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing"])
+feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing", "FLowfix"])
 
 if feature == "AI-assisted lyric generation":
     st.header("AI-assisted Lyric Generation")
@@ -65,3 +65,8 @@ elif feature == "structure editing":
             st.text_area("Your edited lyrics will appear here:", value=edited_lyrics, height=300)
         else:
             st.warning("Please enter the lyrics you want to edit and how you want to change the structure.")
+
+elif feature == "FLowfix":
+    st.header("FLowfix")
+    st.write("This feature is currently under development. Stay tuned for updates!")
+    # function = Write your song while AI continuously reviews your lyrics and suggests improvements to flow, wording, and structure. You can accept or reject each suggestion, keeping full control as you refine your track.
