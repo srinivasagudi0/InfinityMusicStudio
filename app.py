@@ -4,6 +4,7 @@ from lyric_generator import generate_lyrics
 from edit_polish import polish_song_lyrics as edit_polish
 from flowfix import render_flowfix
 from structure_editor import structure_editor
+from tone_style import correct_tone_and_style as cts
 
 
 st.set_page_config(page_title="Infinity Music Studio", page_icon=":musical_note:")
@@ -73,4 +74,23 @@ elif feature == "FLowfix- Flagship":
 
 elif feature == "tone & style adjustment":
     st.header("Tone & Style Adjustment")
-    ## implement this feature later, maybe in the next iteration of the project.
+    if "last_lyrics" not in st.session_state:
+        st.session_state["last_lyrics"] = ""
+        try:
+            with open("last_generated_lyrics.txt", "r") as file:
+                st.session_state["last_lyrics"] = file.read()
+        except FileNotFoundError:
+            st.warning("No previously generated lyrics found. Please generate lyrics first.")
+    genre = st.selectbox("Select the genre of your song:", ["Pop", "Rock", "Hip-Hop", "Country", "Jazz", "Other"])
+    mood = st.selectbox("Select the mood of your song:", ["Happy", "Sad", "Angry", "Romantic", "Energetic", "Other"])
+    formality_slider = st.slider("Select the formality level of your lyrics:", 0, 10, 2)
+    rephrase = st.text_input("How would you like to change the tone and style of your lyrics? (e.g., make it more formal, change the genre, etc.)")
+    if st.button("Adjust Tone & Style"):
+        if st.session_state["last_lyrics"] and rephrase:
+            with st.spinner("Adjusting tone and style..."):
+                desired_change = f"Genre: {genre}, Mood: {mood}, Formality: {formality_slider}/10. {rephrase}"
+                adjusted_lyrics = cts(st.session_state["last_lyrics"], desired_change)
+            st.subheader("Adjusted Lyrics")
+            st.text_area("Your adjusted lyrics will appear here:", value=adjusted_lyrics, height=300)
+        else:
+            st.warning("Please enter the lyrics you want to adjust and how you want to change the tone and style.")
