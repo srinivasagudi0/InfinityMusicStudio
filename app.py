@@ -1,6 +1,7 @@
 import streamlit as st
 from lyric_generator import generate_lyrics
 from edit_polish import polish_song_lyrics as edit_polish
+from structure_editor import structure_editor
 
 
 st.title("Infinity Music Studio")
@@ -8,7 +9,7 @@ st.set_page_config(page_title="Infinity Music Studio", page_icon=":musical_note:
 
 st.write("A small music studio where you can create lyrics for a song, adjust the tone, and perform all the necessary tasks from writing to polishing songs before publishing.")
 
-feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics"])
+feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing"])
 
 if feature == "AI-assisted lyric generation":
     st.header("AI-assisted Lyric Generation")
@@ -47,5 +48,20 @@ elif feature == "editing and polishing lyrics":
 
 elif feature == "structure editing":
     st.header("Structure Editing")
-    ## Add structure editing features here
-    ####
+    if "last_lyrics" not in st.session_state:
+        st.session_state["last_lyrics"] = ""
+        try:
+            with open("last_generated_lyrics.txt", "r") as file:
+                st.session_state["last_lyrics"] = file.read()
+        except FileNotFoundError:
+            st.warning("No previously generated lyrics found. Please generate lyrics first.")
+    st.text_area("Your current lyrics:", value=st.session_state["last_lyrics"], height=300)
+    structure_change = st.text_input("How would you like to change the structure of the song? (e.g., change the order of verses and chorus, add a bridge, etc.)")
+    if st.button("Edit Structure"):
+        if st.session_state["last_lyrics"] and structure_change:
+            with st.spinner("Editing song structure..."):
+                edited_lyrics = structure_editor(st.session_state["last_lyrics"], structure_change)
+            st.subheader("Edited Lyrics with New Structure")
+            st.text_area("Your edited lyrics will appear here:", value=edited_lyrics, height=300)
+        else:
+            st.warning("Please enter the lyrics you want to edit and how you want to change the structure.")
