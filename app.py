@@ -1,4 +1,5 @@
 import streamlit as st
+from lyric_generator import generate_lyrics
 
 
 st.title("Infinity Music Studio")
@@ -10,5 +11,11 @@ feature = st.selectbox("Select a feature", ["AI-assisted lyric generation"])
 
 if feature == "AI-assisted lyric generation":
     st.header("AI-assisted Lyric Generation")
-    # call the function to generate lyrics here
-    ###
+    theme = st.text_input("Enter a theme or mood for your song and eloborate on the theme if you want to.")
+    if theme:
+        if st.button("Generate Lyrics"):
+            with st.spinner("Generating lyrics..."):
+                lyrics = generate_lyrics(theme)
+            st.subheader("Generated Lyrics")
+            st.text_area("Your generated lyrics will appear here:", value=lyrics, height=300)
+
