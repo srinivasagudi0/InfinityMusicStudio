@@ -11,7 +11,7 @@ st.title("Infinity Music Studio")
 
 st.write("A small music studio where you can create lyrics for a song, adjust the tone, and perform all the necessary tasks from writing to polishing songs before publishing.")
 
-feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing", "FLowfix"])
+feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing", "FLowfix- Flagship", "tone & style adjustment"])
 
 if feature == "AI-assisted lyric generation":
     st.header("AI-assisted Lyric Generation")
@@ -68,5 +68,9 @@ elif feature == "structure editing":
         else:
             st.warning("Please enter the lyrics you want to edit and how you want to change the structure.")
 
-elif feature == "FLowfix":
+elif feature == "FLowfix- Flagship":
     render_flowfix()
+
+elif feature == "tone & style adjustment":
+    st.header("Tone & Style Adjustment")
+    ## implement this feature later, maybe in the next iteration of the project.
