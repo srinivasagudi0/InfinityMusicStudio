@@ -21,5 +21,7 @@ if feature == "AI-assisted lyric generation":
         else:
             st.warning("Please enter a theme or mood to generate lyrics.")
 
-
-
+elif feature == "editing and polishing lyrics":
+    st.header("Editing and Polishing Lyrics")
+    ## add logic for editing and polishing lyrics here
+    ####
