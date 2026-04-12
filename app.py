@@ -1,11 +1,13 @@
 import streamlit as st
+
 from lyric_generator import generate_lyrics
 from edit_polish import polish_song_lyrics as edit_polish
+from flowfix import render_flowfix
 from structure_editor import structure_editor
 
 
-st.title("Infinity Music Studio")
 st.set_page_config(page_title="Infinity Music Studio", page_icon=":musical_note:")
+st.title("Infinity Music Studio")
 
 st.write("A small music studio where you can create lyrics for a song, adjust the tone, and perform all the necessary tasks from writing to polishing songs before publishing.")
 
@@ -67,6 +69,4 @@ elif feature == "structure editing":
             st.warning("Please enter the lyrics you want to edit and how you want to change the structure.")
 
 elif feature == "FLowfix":
-    st.header("FLowfix")
-    st.write("This feature is currently under development. Stay tuned for updates!")
-    # function = Write your song while AI continuously reviews your lyrics and suggests improvements to flow, wording, and structure. You can accept or reject each suggestion, keeping full control as you refine your track.
+    render_flowfix()
