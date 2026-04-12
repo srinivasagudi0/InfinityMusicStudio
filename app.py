@@ -11,6 +11,12 @@ from tone_style import correct_tone_and_style as cts
 st.set_page_config(page_title="Infinity Music Studio", page_icon=":musical_note:")
 st.title("Infinity Music Studio")
 
+
+def render_download_button(lyrics, file_name, key):
+    if lyrics:
+        st.download_button("Download Lyrics", lyrics, file_name=file_name, key=key)
+
+
 if "authenticated" not in st.session_state:
     st.session_state["authenticated"] = False
 
@@ -76,6 +82,7 @@ if feature == "AI-assisted lyric generation":
             st.subheader("Generated Lyrics")
             st.text_area("Your generated lyrics will appear here:", value=lyrics, height=300)
             st.write("Your genereted lyrics have been saved and you can edit and polish them in the next section.")
+            render_download_button(lyrics, "last_generated_lyrics.txt", "download_generated_lyrics")
         else:
             st.warning("Please enter a theme or mood to generate lyrics.")
 
@@ -91,6 +98,7 @@ elif feature == "editing and polishing lyrics":
             st.warning("No previously generated lyrics found. Please generate lyrics first.")
 
     st.text_area("Edit your lyrics here:", key="last_lyrics", height=300)
+    render_download_button(st.session_state["last_lyrics"], "edited_lyrics.txt", "download_editing_current_lyrics")
     change = st.text_input("How would you like to change the lyrics? (e.g., make it more poetic, change the tone, etc.)")
     if st.button("Polish Lyrics"):
         if st.session_state["last_lyrics"] and change:
@@ -98,6 +106,7 @@ elif feature == "editing and polishing lyrics":
                 polished_lyrics = edit_polish(st.session_state["last_lyrics"])
             st.subheader("Polished Lyrics")
             st.text_area("Your polished lyrics will appear here:", value=polished_lyrics, height=300)
+            render_download_button(polished_lyrics, "polished_lyrics.txt", "download_polished_lyrics")
         else:
             st.warning("Please enter the lyrics you want to polish and how you want to change them.")
 
@@ -111,6 +120,7 @@ elif feature == "structure editing":
         except FileNotFoundError:
             st.warning("No previously generated lyrics found. Please generate lyrics first.")
     st.text_area("Your current lyrics:", value=st.session_state["last_lyrics"], height=300)
+    render_download_button(st.session_state["last_lyrics"], "current_lyrics.txt", "download_structure_current_lyrics")
     structure_change = st.text_input("How would you like to change the structure of the song? (e.g., change the order of verses and chorus, add a bridge, etc.)")
     if st.button("Edit Structure"):
         if st.session_state["last_lyrics"] and structure_change:
@@ -118,6 +128,7 @@ elif feature == "structure editing":
                 edited_lyrics = structure_editor(st.session_state["last_lyrics"], structure_change)
             st.subheader("Edited Lyrics with New Structure")
             st.text_area("Your edited lyrics will appear here:", value=edited_lyrics, height=300)
+            render_download_button(edited_lyrics, "structured_lyrics.txt", "download_structured_lyrics")
         else:
             st.warning("Please enter the lyrics you want to edit and how you want to change the structure.")
 
@@ -144,5 +155,6 @@ elif feature == "tone & style adjustment":
                 adjusted_lyrics = cts(st.session_state["last_lyrics"], desired_change)
             st.subheader("Adjusted Lyrics")
             st.text_area("Your adjusted lyrics will appear here:", value=adjusted_lyrics, height=300)
+            render_download_button(adjusted_lyrics, "adjusted_lyrics.txt", "download_adjusted_lyrics")
         else:
             st.warning("Please enter the lyrics you want to adjust and how you want to change the tone and style.")
