@@ -1,5 +1,6 @@
 import streamlit as st
 
+from auth import authenticate_user, register_user
 from lyric_generator import generate_lyrics
 from edit_polish import polish_song_lyrics as edit_polish
 from flowfix import render_flowfix
@@ -9,6 +10,57 @@ from tone_style import correct_tone_and_style as cts
 
 st.set_page_config(page_title="Infinity Music Studio", page_icon=":musical_note:")
 st.title("Infinity Music Studio")
+
+if "authenticated" not in st.session_state:
+    st.session_state["authenticated"] = False
+
+if "username" not in st.session_state:
+    st.session_state["username"] = ""
+
+if not st.session_state["authenticated"]:
+    st.subheader("Login")
+    auth_mode = st.radio("Choose an option", ["Login", "Register"], horizontal=True)
+
+    if auth_mode == "Login":
+        with st.form("login_form"):
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
+            login_submitted = st.form_submit_button("Login")
+
+        if login_submitted:
+            if authenticate_user(username, password):
+                st.session_state["authenticated"] = True
+                st.session_state["username"] = username
+                st.rerun()
+            else:
+                st.error("Invalid username or password.")
+
+    else:
+        with st.form("register_form"):
+            username = st.text_input("Create a username")
+            password = st.text_input("Create a password", type="password")
+            register_submitted = st.form_submit_button("Register")
+
+        if register_submitted:
+            if not username or not password:
+                st.warning("Enter a username and password.")
+            elif register_user(username, password):
+                st.success("Account created. You can log in now.")
+            else:
+                st.error("That username already exists.")
+
+    st.stop()
+
+logout_col, welcome_col = st.columns([1, 4])
+
+with logout_col:
+    if st.button("Logout"):
+        st.session_state["authenticated"] = False
+        st.session_state["username"] = ""
+        st.rerun()
+
+with welcome_col:
+    st.caption(f"Logged in as {st.session_state['username']}")
 
 st.write("A small music studio where you can create lyrics for a song, adjust the tone, and perform all the necessary tasks from writing to polishing songs before publishing.")
 
