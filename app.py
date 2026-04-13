@@ -4,6 +4,7 @@ from auth import authenticate_user, register_user
 from lyric_generator import generate_lyrics
 from edit_polish import polish_song_lyrics as edit_polish
 from flowfix import render_flowfix
+from spotify import render_spotify, render_spotify_background_player
 from structure_editor import structure_editor
 from tone_style import correct_tone_and_style as cts
 
@@ -70,7 +71,7 @@ with welcome_col:
 
 st.write("A small music studio where you can create lyrics for a song, adjust the tone, and perform all the necessary tasks from writing to polishing songs before publishing.")
 
-feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing", "FLowfix- Flagship", "tone & style adjustment", "chill!"])
+feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing", "FLowfix- Flagship", "tone & style adjustment", "Spotify"])
 
 if feature == "AI-assisted lyric generation":
     st.header("AI-assisted Lyric Generation")
@@ -159,7 +160,7 @@ elif feature == "tone & style adjustment":
         else:
             st.warning("Please enter the lyrics you want to adjust and how you want to change the tone and style.")
 
-elif feature == "chill!":
-    st.header("Take a Break and Chill!")
-    st.write("You've been working hard on your music. Take a moment to relax and recharge. Listen to some music, go for a walk, or just take a deep breath. Your creativity will thank you!")
-    ## still under development, will add some fun interactive elements here in the future!
+elif feature == "Spotify":
+    render_spotify()
+
+render_spotify_background_player()
