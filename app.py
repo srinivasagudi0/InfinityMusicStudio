@@ -4,6 +4,7 @@ from auth import authenticate_user, register_user
 from lyric_generator import generate_lyrics
 from edit_polish import polish_song_lyrics as edit_polish
 from flowfix import render_flowfix
+from profile import render_profile
 from spotify import render_spotify, render_spotify_background_player
 from structure_editor import structure_editor
 from tone_style import correct_tone_and_style as cts
@@ -165,7 +166,7 @@ elif feature == "Spotify":
 
 
 elif feature == "Profile":
-    ## show user stats and profile info, maybe some settings in the future
-    pass
+    render_profile(st.session_state["username"])
+
 
 render_spotify_background_player()
