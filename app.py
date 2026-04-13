@@ -8,6 +8,7 @@ from profile import render_profile
 from spotify import render_spotify, render_spotify_background_player
 from structure_editor import structure_editor
 from tone_style import correct_tone_and_style as cts
+from my_songs import render_my_songs
 
 
 st.set_page_config(page_title="Infinity Music Studio", page_icon=":musical_note:")
@@ -168,7 +169,7 @@ elif feature == "Spotify":
 elif feature == "Profile":
     render_profile(st.session_state["username"])
     if st.button("My songs"):
-        pass
+        render_my_songs(st.session_state["username"])
 
 
 render_spotify_background_player()
