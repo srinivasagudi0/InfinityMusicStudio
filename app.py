@@ -71,7 +71,7 @@ with welcome_col:
 
 st.write("A small music studio where you can create lyrics for a song, adjust the tone, and perform all the necessary tasks from writing to polishing songs before publishing.")
 
-feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing", "FLowfix- Flagship", "tone & style adjustment", "Spotify"])
+feature = st.selectbox("Select a feature", ["AI-assisted lyric generation", "editing and polishing lyrics", "structure editing", "FLowfix- Flagship", "tone & style adjustment", "Spotify", "Profile"])
 
 if feature == "AI-assisted lyric generation":
     st.header("AI-assisted Lyric Generation")
@@ -162,5 +162,10 @@ elif feature == "tone & style adjustment":
 
 elif feature == "Spotify":
     render_spotify()
+
+
+elif feature == "Profile":
+    ## show user stats and profile info, maybe some settings in the future
+    pass
 
 render_spotify_background_player()
