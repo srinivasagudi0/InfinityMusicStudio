@@ -167,6 +167,8 @@ elif feature == "Spotify":
 
 elif feature == "Profile":
     render_profile(st.session_state["username"])
+    if st.button("My songs"):
+        pass
 
 
 render_spotify_background_player()
