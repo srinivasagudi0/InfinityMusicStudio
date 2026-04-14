@@ -8,7 +8,7 @@ I built this for myself and fellow begginers who are starting to write, organize
 - My Profile - Personalize your application even more, I love personalization.
 - My Songs - Add songs that you wrote and like, so you would never lose them. I added this because normally storing them in Notepad is kind of messy, and you can't specify what type of song using title, mood, genre, and status.
 - Lyric Generator (AI-powered) - Generates full songs from simple description.
-- Eidt & Polish (AI-powered) - Cleans up sloppy lines, fixes awkward phrasing, tightens word choice — without changing your meaning.
+- Eidt & Polish (AI-powered) - Cleans up sloppy lines, fixes awkward phrasing, tightens word choice - without changing your meaning.
 - FLowFix - Write the entire song your way while AI watches, understands, and helps in real time. I built FlowFix because I almost never found a tool that truly supports the full songwriting process without taking over. It is not just Grammarly for lyrics, and it is not basic autocorrect. FlowFix follows the meaning, emotion, and direction of the whole song, so the help feels smarter, more natural, and actually useful while you create. This uses gpt-4-mini because it is known for its human like chats.
 - Tone & Style editor (AI powered).- Fixes tone and style while preserving tone.
 - Structure Editor (AI-powered) - Worked to improve structure when singing, really important cause the singer needs break and cannot sing all at a time, needs chorus, instruments and more.
@@ -27,7 +27,7 @@ auth.py             # login/signup logic with SQLite
 db.py               # database setup and queries
 lyric_generator.py  # uses GPT-4o to generate lyrics from user inputs
 edit_polish.py      # uses GPT-4 to clean up and polish existing lyrics
-flowfix.py          # flagship feature — detects and fixes flow/rhythm issues
+flowfix.py          # flagship feature - detects and fixes flow/rhythm issues if needed, you can either decline or reject it.
 tone_style.py       # adjusts tone and style of lyrics
 structure_editor.py # edits song structure (verse/chorus/bridge)
 spotify_integration.py  # pulls Spotify data for context
