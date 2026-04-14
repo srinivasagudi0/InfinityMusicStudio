@@ -10,7 +10,7 @@ I built this for myself and fellow begginers who are starting to write, organize
 - Lyric Generator (AI-powered) - Generates full songs from simple description.
 - Eidt & Polish (AI-powered) - Cleans up sloppy lines, fixes awkward phrasing, tightens word choice - without changing your meaning.
 - FLowFix - Write the entire song your way while AI watches, understands, and helps in real time. I built FlowFix because I almost never found a tool that truly supports the full songwriting process without taking over. It is not just Grammarly for lyrics, and it is not basic autocorrect. FlowFix follows the meaning, emotion, and direction of the whole song, so the help feels smarter, more natural, and actually useful while you create. This uses gpt-4-mini because it is known for its human like chats.
-- Tone & Style editor (AI powered).- Fixes tone and style while preserving tone.
+- Tone & Style editor (AI powered).- Rewrites the style and vibe of a song while keeping the original meaning.
 - Structure Editor (AI-powered) - Worked to improve structure when singing, really important cause the singer needs break and cannot sing all at a time, needs chorus, instruments and more.
 - Spotify Integration - I personally like peace music to run in background while working. This is also here to give you quick inspiration.
 
