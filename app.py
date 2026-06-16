@@ -147,6 +147,8 @@ elif feature == "tone & style adjustment":
                 st.session_state["last_lyrics"] = file.read()
         except FileNotFoundError:
             st.warning("No previously generated lyrics found. Please generate lyrics first.")
+    st.text_area("Edit your lyrics here:", key="last_lyrics", height=300)
+    render_download_button(st.session_state["last_lyrics"], "tone_style_current_lyrics.txt", "download_tone_style_current_lyrics")
     genre = st.selectbox("Select the genre of your song:", ["Pop", "Rock", "Hip-Hop", "Country", "Jazz", "Other"])
     mood = st.selectbox("Select the mood of your song:", ["Happy", "Sad", "Angry", "Romantic", "Energetic", "Other"])
     formality_slider = st.slider("Select the formality level of your lyrics:", 0, 10, 2)
